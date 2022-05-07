@@ -1,6 +1,6 @@
 import '../styles/App.scss';
 import { useState, useEffect } from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { matchPath, useLocation } from 'react-router';
 import getApiData from '../services/moviesApi';
 import MovieSceneList from './MovieSceneList';
@@ -62,7 +62,11 @@ function App() {
   };
   //rutas
   const { pathname } = useLocation();
-  console.log(pathname);
+  //console.log(pathname);
+  const dataPath = matchPath('/movie/:movieId', pathname);
+  //hacer validacion datapath dif de null return id de ruta si no null
+  const movieId = dataPath !== null ? dataPath.params.movieId : null;
+  const movieFound = dataMovies.find((movie) => movie.id === movieId);
 
   return (
     <>
@@ -89,7 +93,10 @@ function App() {
               </>
             }
           />
-          <Route path='/movie/:movieId' element={<MovieSceneDetail />} />
+          <Route
+            path='/movie/:movieId'
+            element={<MovieSceneDetail movie={movieFound} />}
+          />
         </Routes>
       </div>
     </>
