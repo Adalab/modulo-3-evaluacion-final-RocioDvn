@@ -1,9 +1,9 @@
 function MovieSceneItem(props) {
   return (
-    <a className='' href='#'>
+    <a className='card' href='#'>
       <img src={props.movie.poster} alt='poster' title='poster' />
       <p>
-        {props.movie.movie} {props.movie.year}{' '}
+        {props.movie.movie} {props.movie.year}
       </p>
     </a>
   );

@@ -4,13 +4,13 @@ const getApiData = () => {
   )
     .then((response) => response.json())
     .then((data) => {
-      const dataClean = data.map((movie) => {
+      const dataClean = data.map((movie, index) => {
         return {
           poster: movie.poster,
-          movie: movie.movie,
+          name: movie.movie,
           phrase: movie.full_line,
           year: movie.year,
-          id: movie.id,
+          id: index,
         };
       });
       return dataClean; /*devuelve solo los datos que me interesa*/
