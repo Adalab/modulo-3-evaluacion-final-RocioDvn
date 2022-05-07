@@ -19,23 +19,18 @@ function App() {
   const handleFilterMovie = (value) => {
     setFilterMovie(value);
   };
+  /*funcion para filtart año*/
   const handleFilterYear = (value) => {
     setFilterYear(value);
   };
-  const getYear = () => {
-    const movieYear = dataMovies.map((movie) => movie.year);
-    const uniqueYear = movieYear.filter((year, index) => {
-      return movieYear.indexOf(year) === index;
-    });
-    return uniqueYear;
-  };
+
   /*filtros*/
   const movieFilters = dataMovies
     /*filtrar por nombre*/
     .filter((movie) => {
       return movie.name.includes(filterMovie);
     })
-
+    /*filtro para que salgan todos los años en seleccione*/
     .filter((movie) => {
       if (filterYear === 0) {
         return true;
@@ -43,6 +38,7 @@ function App() {
         return movie.year === filterYear;
       }
     })
+    /*filtro de años*/
     .filter((movie) => {
       if (filterYear === 0) {
         return true;
@@ -50,6 +46,17 @@ function App() {
         return filterYear === movie.year;
       }
     });
+  /*funcion para que no repita el año*/
+  const getYear = () => {
+    const movieYear = dataMovies.map((movie) => movie.year); /*array de años*/
+    /*console.log(movieYear);*/
+    /*no repite el año, indexof posicion*/
+    const uniqueYear = movieYear.filter((year, index) => {
+      return movieYear.indexOf(year) === index;
+    });
+    //console.log(uniqueYear);
+    return uniqueYear;
+  };
 
   return (
     <>
@@ -61,7 +68,7 @@ function App() {
       <Filters
         handleFilterMovie={handleFilterMovie}
         handleFilterYear={handleFilterYear}
-        year={getYear()}
+        years={getYear()}
         filterYear={filterYear}
       />
     </>

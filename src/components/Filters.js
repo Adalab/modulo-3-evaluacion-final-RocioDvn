@@ -8,7 +8,7 @@ function Filter(props) {
         <FilterMovie handleFilterMovie={props.handleFilterMovie} />
         <FilterYear
           handleFilterYear={props.handleFilterYear}
-          year={props.year}
+          years={props.years}
           FilterYear={props.FilterYear}
         />
       </form>
