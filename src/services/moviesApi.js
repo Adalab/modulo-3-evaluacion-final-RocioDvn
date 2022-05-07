@@ -10,6 +10,8 @@ const getApiData = () => {
           name: movie.movie,
           phrase: movie.full_line,
           year: movie.year,
+          director: movie.director,
+          audio: movie.audio,
           id: index,
         };
       });

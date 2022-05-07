@@ -2,7 +2,7 @@ import MovieSceneItem from './MovieSceneItem';
 
 function MovieSceneList(props) {
   /*movieElements es el array generado con map,  */
-  const movieElements = props.dataMovie.map((movie) => {
+  const movieElements = props.movieFilters.map((movie) => {
     return (
       <li className='' key={movie.id}>
         <MovieSceneItem movie={movie} />

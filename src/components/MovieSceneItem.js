@@ -1,10 +1,10 @@
 function MovieSceneItem(props) {
   return (
     <a className='card' href='#'>
-      <img src={props.movie.poster} alt='poster' title='poster' />
-      <p>
-        {props.movie.movie} {props.movie.year}
-      </p>
+      <img src={props.movie.poster} alt={props.movie.poster} title='poster' />
+      <p>{props.movie.name}</p>
+      <p>{props.movie.year}</p>
+      <p>{props.movie.phrase}</p>
     </a>
   );
 }

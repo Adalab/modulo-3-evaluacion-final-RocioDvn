@@ -1,18 +1,21 @@
 import FilterMovie from './FilterMovie';
-import FilterYear from './FilterYear';
+import FilterYears from './FilterYears';
 
-function Filter(props) {
+function Filters(props) {
   return (
     <section>
       <form>
-        <FilterMovie handleFilterMovie={props.handleFilterMovie} />
-        <FilterYear
+        <FilterMovie
+          handleFilterMovie={props.handleFilterMovie}
+          searchMovie={props.searchMovie}
+        />
+        <FilterYears
           handleFilterYear={props.handleFilterYear}
           years={props.years}
-          FilterYear={props.FilterYear}
+          filterYears={props.FilterYears}
         />
       </form>
     </section>
   );
 }
-export default Filter;
+export default Filters;

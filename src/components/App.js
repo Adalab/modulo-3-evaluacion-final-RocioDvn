@@ -1,13 +1,16 @@
 import '../styles/App.scss';
 import { useState, useEffect } from 'react';
+import { Routes, Route, Link } from 'react-router-dom';
+import { matchPath, useLocation } from 'react-router';
 import getApiData from '../services/moviesApi';
 import MovieSceneList from './MovieSceneList';
 import Filters from './Filters';
+import MovieSceneDetail from './MovieSceneDetails';
 
 function App() {
   const [dataMovies, setDataMovies] = useState([]);
-  const [filterMovie, setFilterMovie] = useState('');
-  const [filterYear, setFilterYear] = useState(0);
+  const [searchMovie, setSearchMovie] = useState('');
+  const [filterYears, setFilterYears] = useState(0);
   /*uso usefefect para que solo pinte una vez*/
   useEffect(() => {
     getApiData().then((dataApi) => {
@@ -17,33 +20,33 @@ function App() {
   }, []);
   /*funcion para filtart movie*/
   const handleFilterMovie = (value) => {
-    setFilterMovie(value);
+    setSearchMovie(value);
   };
   /*funcion para filtart año*/
   const handleFilterYear = (value) => {
-    setFilterYear(value);
+    setFilterYears(value);
   };
 
   /*filtros*/
   const movieFilters = dataMovies
     /*filtrar por nombre*/
     .filter((movie) => {
-      return movie.name.includes(filterMovie);
+      return movie.name.includes(searchMovie);
     })
     /*filtro para que salgan todos los años en seleccione*/
     .filter((movie) => {
-      if (filterYear === 0) {
+      if (filterYears === 0) {
         return true;
       } else {
-        return movie.year === filterYear;
+        return movie.year === filterYears;
       }
     })
     /*filtro de años*/
     .filter((movie) => {
-      if (filterYear === 0) {
+      if (filterYears === 0) {
         return true;
       } else {
-        return filterYear === movie.year;
+        return filterYears === movie.year;
       }
     });
   /*funcion para que no repita el año*/
@@ -57,20 +60,38 @@ function App() {
     //console.log(uniqueYear);
     return uniqueYear;
   };
+  //rutas
+  const { pathname } = useLocation();
+  console.log(pathname);
 
   return (
     <>
       <header>
         <h1>Owen wilson's "wow"</h1>
       </header>
-
-      <MovieSceneList dataMovie={dataMovies} />
-      <Filters
-        handleFilterMovie={handleFilterMovie}
-        handleFilterYear={handleFilterYear}
-        years={getYear()}
-        filterYear={filterYear}
-      />
+      <div>
+        <Routes>
+          <Route
+            path='/'
+            element={
+              <>
+                <MovieSceneList
+                  movieFilters={movieFilters}
+                  searchMovie={searchMovie}
+                />
+                <Filters
+                  handleFilterMovie={handleFilterMovie}
+                  handleFilterYear={handleFilterYear}
+                  years={getYear()}
+                  filterYears={filterYears}
+                  searchMovie={searchMovie}
+                />
+              </>
+            }
+          />
+          <Route path='/movie/:movieId' element={<MovieSceneDetail />} />
+        </Routes>
+      </div>
     </>
   );
 }
