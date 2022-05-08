@@ -1,12 +1,11 @@
 import { Link } from 'react-router-dom';
-
 function MovieSceneDetails(props) {
   return (
     <fieldset className='cardDetail'>
       <img
         className='imgDetail'
         src={props.movie.poster}
-        alt={props.movie.name}
+        alt={props.movie.poster}
       />
       <div>
         <h2 className='nameDetail'> {props.movie.name} </h2>

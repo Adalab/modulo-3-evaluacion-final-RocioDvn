@@ -68,12 +68,14 @@ function App() {
     return uniqueYear;
   };
   //rutas
+  //para el detail
   const { pathname } = useLocation();
   //console.log(pathname);
   const dataPath = matchPath('/movie/:movieId', pathname);
+  //console.log(dataPath);
   //hacer validacion datapath dif de null return id de ruta si no null
   const movieId = dataPath !== null ? dataPath.params.movieId : null;
-  const movieFound = dataMovies.find((movie) => movie.id === movieId);
+  const movieFound = dataMovies.find((item) => item.id === movieId);
 
   return (
     <>
@@ -102,6 +104,7 @@ function App() {
           />
           <Route
             path='/movie/:movieId'
+            //buscar movie de la url
             element={<MovieSceneDetail movie={movieFound} />}
           />
         </Routes>
