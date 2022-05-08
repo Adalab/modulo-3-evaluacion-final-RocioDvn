@@ -12,7 +12,7 @@ const getApiData = () => {
           year: movie.year,
           director: movie.director,
           audio: movie.audio,
-          id: index,
+          id: index.toString(),
         };
       });
       return dataClean; /*devuelve solo los datos que me interesa*/

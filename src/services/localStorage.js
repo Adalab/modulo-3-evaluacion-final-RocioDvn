@@ -9,7 +9,7 @@ const get = (key, defaultData) => {
 
 const set = (key, value) => {
   const localStorageData = JSON.stringify(value);
-  localStorage.setitem(key.localStorageData);
+  localStorage.setItem(key, localStorageData);
 };
 
 const objToExport = {

@@ -15,7 +15,7 @@ function FilterYear(props, ev) {
   return (
     <>
       <fieldset>
-        <label className='labelYear'>Year:</label>
+        <label className='label'>Year:</label>
         <select
           name=''
           id=''

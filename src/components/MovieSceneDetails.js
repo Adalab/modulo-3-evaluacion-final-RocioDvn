@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+
 function MovieSceneDetails(props) {
   return (
     <fieldset className='cardDetail'>
@@ -15,7 +16,7 @@ function MovieSceneDetails(props) {
           <a className='audio' href={props.movie.audio} target='blank'>
             Escucha el audio de la pelicula
           </a>
-          <Link to={'/'}></Link>
+          <Link to='/'></Link>
         </nav>
       </div>
     </fieldset>

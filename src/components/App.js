@@ -9,7 +9,7 @@ import MovieSceneDetail from './MovieSceneDetails';
 import ls from '../services/localStorage';
 
 function App() {
-  const [dataMovies, setDataMovies] = useState([]);
+  const [dataMovies, setDataMovies] = useState(ls.get('movie', []));
   const [searchMovie, setSearchMovie] = useState('');
   const [filterYears, setFilterYears] = useState(0);
   /*uso usefefect para que solo pinte una vezllamamso a api*/
