@@ -1,6 +1,6 @@
-function FilterYear(props) {
-  const renderYear = () => {
-    return props.years.map((year, index) => {
+function FilterYear(props, ev) {
+  const renderYear = (ev) => {
+    return props.year.map((year, index) => {
       return (
         <option key={index} value={year}>
           {year}
@@ -15,14 +15,14 @@ function FilterYear(props) {
   return (
     <>
       <fieldset>
-        <label htmlFor='labelYear'>Year:</label>
+        <label className='labelYear'>Year:</label>
         <select
           name=''
           id=''
           onChange={handleChangeYear}
           value={props.filterYears}
         >
-          <option value='0'>Seleccionar el año</option>
+          <option value='0'>Elija el año</option>
           {renderYear()}
         </select>
       </fieldset>

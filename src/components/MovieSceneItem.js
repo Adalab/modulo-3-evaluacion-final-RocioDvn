@@ -3,7 +3,7 @@ function MovieSceneItem(props) {
   return (
     <Link to={`/movie/${props.movie.id}`} className=''>
       <img className='img' src={props.movie.poster} alt={props.movie.poster} />
-      <p>{props.movie.name}</p>
+      <h2>{props.movie.name}</h2>
       <p>{props.movie.year}</p>
       <p>{props.movie.phrase}</p>
     </Link>

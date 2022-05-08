@@ -8,7 +8,7 @@ function MovieSceneDetails(props) {
         alt={props.movie.name}
       />
       <div>
-        <p className='nameDetail'> {props.movie.name} </p>
+        <h2 className='nameDetail'> {props.movie.name} </h2>
         <p className='phraseDetail'> {props.movie.phrase} </p>
         <p className='director'>{props.movie.director} </p>
         <nav>

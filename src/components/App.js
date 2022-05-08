@@ -6,32 +6,39 @@ import getApiData from '../services/moviesApi';
 import MovieSceneList from './MovieSceneList';
 import Filters from './Filters';
 import MovieSceneDetail from './MovieSceneDetails';
+import ls from '../services/localStorage';
 
 function App() {
   const [dataMovies, setDataMovies] = useState([]);
   const [searchMovie, setSearchMovie] = useState('');
   const [filterYears, setFilterYears] = useState(0);
-  /*uso usefefect para que solo pinte una vez*/
+  /*uso usefefect para que solo pinte una vezllamamso a api*/
   useEffect(() => {
-    getApiData().then((dataApi) => {
-      /*console.log(dataApi); me pinta ok */
-      setDataMovies(dataApi);
-    });
+    if (dataMovies.length === 0) {
+      getApiData().then((dataApi) => {
+        /*console.log(dataApi); me pinta ok */
+        setDataMovies(dataApi);
+      });
+    }
   }, []);
+  //Lee del local storage los datos y guárdalos en el useState para que estén disponibles al arrancar la página.
+  useEffect(() => {
+    ls.set('movie', dataMovies);
+  }, [dataMovies]);
   /*funcion para filtart movie*/
   const handleFilterMovie = (value) => {
     setSearchMovie(value);
   };
   /*funcion para filtart año*/
   const handleFilterYear = (value) => {
-    setFilterYears(value);
+    setFilterYears(parseInt(value));
   };
 
   /*filtros*/
   const movieFilters = dataMovies
     /*filtrar por nombre*/
     .filter((movie) => {
-      return movie.name.includes(searchMovie);
+      return movie.name.toLowerCase().includes(searchMovie.toLowerCase());
     })
     /*filtro para que salgan todos los años en seleccione*/
     .filter((movie) => {
@@ -71,7 +78,7 @@ function App() {
   return (
     <>
       <header>
-        <h1>Owen wilson's "wow"</h1>
+        <h1 className='tittle'>Owen wilson's "wow"</h1>
       </header>
       <div>
         <Routes>
@@ -86,7 +93,7 @@ function App() {
                 <Filters
                   handleFilterMovie={handleFilterMovie}
                   handleFilterYear={handleFilterYear}
-                  years={getYear()}
+                  year={getYear()}
                   filterYears={filterYears}
                   searchMovie={searchMovie}
                 />

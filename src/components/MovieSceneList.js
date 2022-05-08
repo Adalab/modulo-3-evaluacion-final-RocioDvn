@@ -9,7 +9,12 @@ function MovieSceneList(props) {
       </li>
     );
   });
-  return (
+  return props.movieFilters.length === 0 && props.searchMovie !== '' ? (
+    <p>
+      No hay ninguna nombre de película que coincida con la palabra {''}
+      {props.searchMovie}
+    </p>
+  ) : (
     <section>
       <ul className='cardList'> {movieElements} </ul>
     </section>
